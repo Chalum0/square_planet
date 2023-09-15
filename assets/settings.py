@@ -1,5 +1,6 @@
 # Screen settings
 SCREEN_X, SCREEN_Y = (1080, 720)
+HALF_SCREEN_X, HALF_SCREEN_Y = (int(SCREEN_X/2), int(SCREEN_Y/2))
 
 
 # Player settings
