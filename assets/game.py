@@ -36,7 +36,7 @@ def get_point_pos(points: tuple or list, cos_x: float, cos_y: float, sin_x: floa
     return ps, vs_points
 
 
-class System:
+class Game:
     def __init__(self):
         self.player = Player()
         self.points = []
