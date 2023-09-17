@@ -26,8 +26,6 @@ while playing:
     cam_x, cam_y = game.player.camX, game.player.camY
     cos_x, cos_y, sin_x, sin_y = cos(cam_x), cos(cam_y), sin(cam_x), sin(cam_y)
 
-
-
     # Mouse head movement
     if mouse_pos_x != HALF_SCREEN_X:
         game.player.camY -= (mouse_pos_x - HALF_SCREEN_X) * CAMERA_SENSIBILITY
