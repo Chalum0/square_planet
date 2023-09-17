@@ -21,8 +21,21 @@ while playing:
 
     # Get outside values
     mouse_pos_x, mouse_pos_y = pygame.mouse.get_pos()
+    cam_x, cam_y = None, None
     cos_x, cos_y, sin_x, sin_y = None, None, None, None
 
+
+
+    # Mouse head movement
+    if mouse_pos_x != HALF_SCREEN_X:
+        system.player.camY -= (mouse_pos_x - HALF_SCREEN_X) * CAMERA_SENSIBILITY
+        pygame.mouse.set_pos((HALF_SCREEN_X, mouse_pos_y))
+
+    if mouse_pos_y != HALF_SCREEN_Y:
+        move = mouse_pos_y - HALF_SCREEN_Y
+        if ((move > 0 and cam_x <= RD85) or (move < 0 and cam_x >= NRD85)):
+            system.player.camX += move * CAMERA_SENSIBILITY
+        pygame.mouse.set_pos((mouse_pos_x, HALF_SCREEN_Y))
 
 
     # EVENTS
