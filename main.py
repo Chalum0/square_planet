@@ -23,6 +23,7 @@ while playing:
     mouse_pos_x, mouse_pos_y = pygame.mouse.get_pos()
     cam_x, cam_y = game.player.camX, game.player.camY
     cos_x, cos_y, sin_x, sin_y = cos(cam_x), cos(cam_y), sin(cam_x), sin(cam_y)
+    player_fov = game.player.fov
 
     # Mouse head movement
     if mouse_pos_x != HALF_SCREEN_X:
@@ -37,8 +38,53 @@ while playing:
 
     SCREEN.fill((0, 150, 255))  # Clear screen
 
-    ps, vs_points = assets.game.get_point_pos(game.points, cos_x, cos_y, sin_x, sin_y,
-                                              game.player.fov, game.player.pos)
+    # Get onscreen position of points
+    ps, vs_points = assets.game.get_point_pos(game.points, cos_x, cos_y, sin_x, sin_y, player_fov, game.player.pos)
+
+
+
+
+    # Draw polygons
+    if game.len_points >= 2:
+        # system.update_polygons_distance()
+
+
+
+
+        for k in game.polygons:
+            i = k[0]  # every element of polygon is this way : ([points], distance, length, color)
+            not_false_point = []
+            len_points = 0
+            points = []
+            pts = []
+            for y in range(k[2]):  # For every point in the polygon
+                point = i[y]
+                ps_point = ps[point]
+                points.append(ps_point)
+                len_points += 1
+                pts.append((vs_points[point]))
+                if ps_point is not False:
+                    not_false_point.append(ps_point)
+            if len(not_false_point) >= 1:
+                if False in points:
+                    lst = []
+                    for x in range(len_points):
+                        if points[x] is not False:
+                            lst.append(points[x])
+
+                        point_ = points[(x + 1) % len_points]
+                        if (point_ is False and points[x] is not False) or (
+                                point_ is not False and points[x] is False):
+
+                            lst.append(clip3d(pts[(x + 1) % len_points], pts[x], player_fov))
+                    if len(lst) >= 3:
+                        pygame.draw.polygon(SCREEN, k[3], lst)
+                else:
+                    pygame.draw.polygon(SCREEN, k[3], points)
+
+
+
+
 
 
     # EVENTS
