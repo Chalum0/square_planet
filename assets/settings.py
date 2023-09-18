@@ -15,3 +15,10 @@ CAMERA_SENSIBILITY = round((0.05/2) * (0.05/2) * 3, 7)
 # Other
 RD85 = math.radians(85)
 NRD85 = -RD85
+ZCD = 1
+
+def clip3d(p1, p2, fov):
+    p1_0, p1_1, p1_2 = p1
+    p2_0, p2_1, p2_2 = p2
+    step = ((ZCD-p1_2)/(p2_2-p1_2))
+    return (p1_0 + (p2_0 - p1_0) * step) * fov / ZCD + HALF_SCREEN_X, (p1_1 + (p2_1 - p1_1) * step) * fov / ZCD + HALF_SCREEN_Y
