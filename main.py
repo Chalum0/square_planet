@@ -2,13 +2,11 @@
 # ------ Open Source Project ------
 # ---------- Using UTF 8 ----------
 
-from math import degrees, cos, sin
-from itertools import combinations
+from math import cos, sin
+# from itertools import combinations
 from assets.settings import *
 import assets.game
-import random
 import pygame
-import pickle
 import time
 
 pygame.init()
@@ -35,6 +33,12 @@ while playing:
         if (move > 0 and cam_x <= RD85) or (move < 0 and cam_x >= NRD85):
             game.player.camX += move * CAMERA_SENSIBILITY
         pygame.mouse.set_pos((mouse_pos_x, HALF_SCREEN_Y))
+
+
+    SCREEN.fill((0, 150, 255))  # Clear screen
+
+    ps, vs_points = assets.game.get_point_pos(game.points, cos_x, cos_y, sin_x, sin_y,
+                                              game.player.fov, game.player.pos)
 
 
     # EVENTS
