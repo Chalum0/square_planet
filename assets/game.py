@@ -1,6 +1,6 @@
-from math import sin, cos, dist
+from math import dist
 from assets.settings import *
-import pygame
+# import pygame
 
 
 def get_point_pos(points: tuple or list, cos_x: float, cos_y: float, sin_x: float,
