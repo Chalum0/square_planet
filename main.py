@@ -11,7 +11,10 @@ import time
 
 pygame.init()
 pygame.display.set_caption("BITE")
-SCREEN = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
+SCREEN = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
+# FONT = pygame.font.Font("assets/pixel.ttf", 25)
+FONT = pygame.font.SysFont('arial', 25)
+pygame.mouse.set_visible(False)
 CLOCK = pygame.time.Clock()
 
 game = assets.game.Game()
@@ -36,6 +39,8 @@ while playing:
         pygame.mouse.set_pos((mouse_pos_x, HALF_SCREEN_Y))
 
 
+    game.player.controls(pygame.key.get_pressed(), CLOCK.tick(MAX_FPS) / 100)
+
     SCREEN.fill((0, 150, 255))  # Clear screen
 
     # Get onscreen position of points
@@ -47,10 +52,6 @@ while playing:
     # Draw polygons
     if game.len_points >= 2:
         # system.update_polygons_distance()
-
-
-
-
         for k in game.polygons:
             i = k[0]  # every element of polygon is this way : ([points], distance, length, color)
             not_false_point = []
@@ -83,10 +84,10 @@ while playing:
                     pygame.draw.polygon(SCREEN, k[3], points)
 
 
+    # Display fps on screen
+    SCREEN.blit(FONT.render(f"FPS: {round(CLOCK.get_fps(), 1)}", True, (255, 255, 255)), (5, 5))
 
-
-
-
+    pygame.display.flip()
     # EVENTS
     for event in pygame.event.get():
 
