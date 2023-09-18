@@ -39,6 +39,7 @@ def get_point_pos(points: tuple or list, cos_x: float, cos_y: float, sin_x: floa
 class Game:
     def __init__(self):
         self.player = Player()
+        self.len_points = 0
         self.points = []
         self.polygons = []
 
