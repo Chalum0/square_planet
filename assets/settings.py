@@ -1,13 +1,13 @@
 import math
 
 # Screen settings
-SCREEN_X, SCREEN_Y = (1920, 1080)
+SCREEN_X, SCREEN_Y = (1536, 864)  # (1920, 1080)
 HALF_SCREEN_X, HALF_SCREEN_Y = (int(SCREEN_X/2), int(SCREEN_Y/2))
 MAX_FPS = 1000
 
 
 # Player settings
-PLAYER_START_POS = (0, 0, 0)
+PLAYER_START_POS = (0.0, 0.0, 0.0)
 PLAYER_FOV = 400
 PLAYER_SPEED_START = 3.0
 CAMERA_SENSIBILITY = round((0.05/2) * (0.05/2) * 3, 7)
